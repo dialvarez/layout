@@ -476,11 +476,14 @@
           @start="dragging = true"
           @end="dragging = false"
           @change="log"
+          handle=".drag-handle"
           class="grid grid-cols-4 gap-2"
           :class="layout.cols===5 ? 'grid-cols-4' : 'grid-cols-3'"
         >
           <template #item="{ element: layoutItems }: { element: LayoutItems }">
-            <LayoutItem :layoutItems="layoutItems" />
+            <div>
+              <LayoutItem :layoutItems="layoutItems" />
+            </div>
           </template>
         </draggable>
       
