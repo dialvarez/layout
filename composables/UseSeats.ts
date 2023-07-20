@@ -1,6 +1,5 @@
 import type { Component } from "@vue/runtime-core";
-import { Kinde } from "types/emun";
-//import ImageSeat from "types/ImageSeat";
+import Seat from "types/Seat";
 import { reactive } from "vue";
 
 const files: { [key: string]: unknown } = import.meta.glob(
@@ -20,7 +19,7 @@ export default function UseSeats() {
   /**
    * Get a single seat component by name
    */
-  const findSeat = (name: Kinde | null) =>
+  const findSeat = (name: Seat | null) =>
     seats.find((seat) => seat.name === name)?.component;
 
   return { seats, findSeat };

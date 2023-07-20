@@ -1,4 +1,4 @@
-import { Kinde } from "./emun";
+import Seat from "./Seat";
 
 export type ID = string;
 
@@ -24,7 +24,7 @@ export interface Layout {
 
 export interface LayoutItems {
   id: ID;
-  kinde: Kinde; // seat | aisle | stair | coffe | init
+  seat: Seat; // seat | aisle | stair | coffe | init
   row: number;
   col: number;
   //image: ImageSeat | null;
