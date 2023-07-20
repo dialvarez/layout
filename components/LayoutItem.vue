@@ -1,7 +1,5 @@
 <script setup lang="ts">
-
 import { LayoutItems } from "types";
-const { findSeat } = UseSeats();
 defineProps<{
   layoutItems: LayoutItems;
 }>();

@@ -2,8 +2,8 @@
   import { nanoid } from "nanoid";
   import draggable from "vuedraggable";
   import { Layout, LayoutItems } from "types";
-  import UseSeats from "@/composables/UseSeats";
-  const { findSeat } = UseSeats();
+  import Seat from "types/Seat";
+
   const layouts = ref<Layout[]>([
     {
       id: nanoid(5),
@@ -176,9 +176,10 @@
     window.console.log(evt);
   }
   const alt = useKeyModifier("Alt");
+  const seat = ref<Seat | null>(null);
 </script>
 <template>
-   <component width="75" :is="findSeat(layoutItems.seat)"></component>
+  
   <div class="flex gap-5 overflow-x-auto items-start">
     <div
       v-for="layout in layouts"
@@ -188,6 +189,7 @@
       <h3>Draggable {{ draggingInfo }}</h3>
       <header class="font-bold mb-4">
         {{ layout.name }}
+     
       </header>
 
       <draggable
@@ -211,7 +213,8 @@
 
       <footer>
         <button class="text-gray-500">+ Add a Card</button>
-      </footer>
+       <SeatField />
+       </footer>
     </div>
   </div>
 </template>

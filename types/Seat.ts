@@ -1,8 +1,7 @@
 type Seat =
-  | "selected"
+  | "blocked"
   | "booked"
   | "free"
-  | "blocked"
   | "aisle"
   | "coffe"
   | "stair"

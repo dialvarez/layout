@@ -10,6 +10,7 @@
       Trello Board
     </h1>
    <!--   <TrelloBoard />  -->
-    <Layout />
+   <Layout />
   </div>
 </template>
+

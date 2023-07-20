@@ -1,9 +1,9 @@
-import type { Component } from "@vue/runtime-core";
+import { Component } from "nuxt/schema";
 import Seat from "types/Seat";
 import { reactive } from "vue";
 
-const files: { [key: string]: unknown } = import.meta.glob(
-  "../assets/images/seats/*.svg"
+ const files: { [key: string]: unknown } = import.meta.glob (
+  "../assets/icons/seats/*.svg"
 );
 
 export default function UseSeats() {
@@ -11,7 +11,7 @@ export default function UseSeats() {
   for (const path in files) {
     const component = files[path] as Component;
     const name = path
-      .replace("../assets/images/seats/", "")
+      .replace("../assets/icons/seats/", "")
       .replace("-seat.svg", "");
     seats.push({ name, component });
   }
@@ -22,5 +22,5 @@ export default function UseSeats() {
   const findSeat = (name: Seat | null) =>
     seats.find((seat) => seat.name === name)?.component;
 
-  return { seats, findSeat };
+  return { seats, findSeat};
 }
