@@ -27,5 +27,6 @@ export interface LayoutItems {
   kinde: Kinde; // seat | aisle | stair | coffe | init
   row: number;
   col: number;
+  //image: ImageSeat | null;
   createdAt: Date;
 }
