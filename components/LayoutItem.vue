@@ -1,21 +1,19 @@
 <script setup lang="ts">
 import { LayoutItems } from "types";
+const { findSeat } = UseSeats();
 defineProps<{
   layoutItems: LayoutItems;
 }>();
 </script>
 <template>
-     
-
   <div
     :title="layoutItems.createdAt.toLocaleString()"
     class="layoutItem bg-white p-2 mb-2 rounded shadow-sm max-w-[100px] flex"
   >
-    <DragHandle class="pr-2" />
+    <!--  <DragHandle class="pr-2" /> -->
 
     <article class="flex items-start space-x-2 p-1">
       <div class="text-sm">
-    
         <dl class="flex flex-wrap text-xs leading-3 font-normal">
           <div class="flex-none w-full mt-2 font-normal">
             <dt class="sr-only">Cast</dt>
@@ -23,11 +21,19 @@ defineProps<{
           </div>
           <div class="flex-none w-full mt-2 font-normal">
             <dt class="sr-only">Cast</dt>
-            <dd class="text-slate-400">{{ layoutItems.seat }}</dd>
+            <dd class="text-slate-400">
+              <component
+                width="75"
+                :is="findSeat(layoutItems.seat)"
+                class="drag-handle cursor-move"
+              ></component>
+            </dd>
           </div>
           <div class="flex-none w-full mt-2 font-normal">
             <dt class="sr-only">Cast</dt>
-            <dd class="text-slate-400">{{ layoutItems.createdAt.getFullYear() }}</dd>
+            <dd class="text-slate-400">
+              {{ layoutItems.createdAt.getFullYear() }}
+            </dd>
           </div>
         </dl>
       </div>

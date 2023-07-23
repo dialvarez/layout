@@ -22,6 +22,11 @@ export interface Layout {
   layoutItems: LayoutItems[];
 }
 
+export interface LayoutSetup {
+  id: ID;
+  seat: Seat;
+}
+
 export interface LayoutItems {
   id: ID;
   seat: Seat; // seat | aisle | stair | coffe | init

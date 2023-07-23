@@ -4,13 +4,12 @@
       <img
         width="200"
         class="mr-3"
-        src="https://vueschool.io/img/logo/vueschool_logo_multicolor_negative.svg"
+        src="./assets/icons/seats/bloked-seat.svg"
         alt="Vue School"
       />
       Trello Board
     </h1>
-   <!--   <TrelloBoard />  -->
-   <Layout />
+    <!-- <TrelloBoard /> -->
+    <Layout />
   </div>
 </template>
-
