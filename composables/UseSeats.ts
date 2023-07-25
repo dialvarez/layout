@@ -12,6 +12,7 @@ export default function UseSeats() {
     const name = path
       .replace("../assets/icons/seats/", "")
       .replace("-seat.svg", "");
+      console.log(name)
     seats.push({ name, component });
   }
   /**

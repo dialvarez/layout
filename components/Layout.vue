@@ -210,13 +210,57 @@ const alt = useKeyModifier("Alt");
 const seat = ref<Seat | null>(null);
 </script>
 <template>
+  <div class="relative rounded-xl overflow-auto p-8">
+    <div
+      class="grid grid-rows-3 grid-flow-col gap-4 font-mono text-white text-sm text-center font-bold leading-6 bg-stripes-fuchsia rounded-lg"
+    >
+      <div
+        class="p-4 rounded-lg shadow-lg bg-fuchsia-500 grid place-content-center row-span-3"
+      >
+      <div
+      v-for="layout in layouts"
+      :key="layout.id"
+      class="column bg-gray-200 text-cyan-950 rounded min-w-[250px] "
+    >
+      <header class="font-bold mb-1">
+        {{ layout.name }}
+      </header>
+      <div class="grid grid-cols-4 gap-2">
+        <LayoutItem
+          v-for="layoutItems in layout.layoutItems"
+          :key="layoutItems.id"
+          :layoutItems="layoutItems"
+        />
+      </div>  
+    </div>     
+    </div>     
+
+      <div
+        class="p-4 rounded-lg bg-fuchsia-300 grid place-content-center col-span-1 row-span-2 dark:bg-fuchsia-800 dark:text-fuchsia-400"
+      >
+        02
+      </div>
+      <div
+        class="p-4 rounded-lg shadow-lg bg-orange-500 grid place-content-center col-span-1 row-start-3"
+      >
+      <div>
+        <SeatField v-model="seat" /></div>
+      </div>
+      <div
+        class="p-4 rounded-lg shadow-lg bg-blue-400 grid place-content-center row-span-3"
+      >
+        04
+      </div>
+    </div>
+  </div>
   <div class="flex gap-5 overflow-x-auto items-start">
     <draggable
       v-model="layoutSetup"
-      :group="{ name: 'people', pull: 'clone', put: false }"
+      group="people"
+      item-key="id"
+      sort:false
       :animation="150"
       handle=".drag-handle"
-      item-key="id"
       class="flex gap-4 overflow-x-auto items-start"
     >
       <template #item="{ element: layoutSetup }: { element: LayoutSetup }">
@@ -243,9 +287,7 @@ const seat = ref<Seat | null>(null);
         v-model="layout.layoutItems"
         group="people"
         :animation="150"
-        item-key="id"
-        @start="dragging = true"
-        @end="dragging = false"
+        sort:false
         @change="log"
         class="grid grid-cols-4 gap-2"
         :class="layout.cols === 6 ? 'grid-cols-5' : 'grid-cols-4'"

@@ -18,18 +18,18 @@ defineEmits(["update:modelValue"]);
 </template>
 <style>
 .emoji-container {
-  @apply flex mb-5;
+  @apply grid grid-cols-3 gap-4;
 }
 .emoji-container svg {
   transition: 0.2s ease all;
-  @apply w-8 mr-2 cursor-pointer;
+  @apply  cursor-pointer;
 }
 .emoji-container svg.selected,
 .emoji-container svg.selected path {
-  @apply fill-white dark:fill-white rounded-3xl;
-  @apply bg-teal-700 dark:bg-teal-700;
+  @apply ring-2 ring-gray-700 rounded-3xl p-1;
+  @apply bg-gray-200 ;
 }
 .emoji-container svg:hover {
-  transform: scale(1.1);
+  transform: scale(1.3);
 }
 </style>
