@@ -429,7 +429,7 @@ const layouts = ref<Layout[]>([
       },
     ],
   },
-  
+
   /*  {
     id: nanoid(5),
     name: "Planta Baja",
@@ -519,29 +519,29 @@ const seat = ref<Seat | null>(null);
       <div
         class="p-4 rounded-lg shadow-lg bg-fuchsia-500 grid place-content-center row-span-3"
       >
-      <div
-      v-for="layout in layouts"
-      :key="layout.id"
-      class="column bg-gray-200 text-cyan-950 rounded min-w-[250px] "
-    >
-      <header class="font-bold mb-1">
-        {{ layout.name }}
-      </header>
-      <div class="grid grid-cols-5 gap-2">
-        <LayoutItem
-          v-for="layoutItem in layout.layoutItems"
-          :key="layoutItem.id"
-          :seat="layoutItem.seat" <<--------- ver como abajo
-          v-model="layoutItem.seat"
-        /> 
-       <!--  <component v-for="layoutItem in layout.layoutItems"
+        <div
+          v-for="layout in layouts"
+          :key="layout.id"
+          class="column bg-gray-200 text-cyan-950 rounded min-w-[250px]"
+        >
+          <header class="font-bold mb-1">
+            {{ layout.name }}
+          </header>
+          <div class="grid grid-cols-5 gap-2">
+            <LayoutItem
+              v-for="layoutItem in layout.layoutItems"
+              key="layoutItem.id"
+              layoutItems="layoutItem.seat"
+              v-model="layoutItem.seat"
+            />
+            <!--  <component v-for="layoutItem in layout.layoutItems"
             width="75"
             :is="findSeat(layoutItem.seat)"
             class="drag-handle cursor-move"
           ></component> -->
-      </div>  
-    </div>     
-    </div>     
+          </div>
+        </div>
+      </div>
 
       <div
         class="p-4 rounded-lg bg-fuchsia-300 grid place-content-center col-span-1 row-span-2 dark:bg-fuchsia-800 dark:text-fuchsia-400"
@@ -551,8 +551,9 @@ const seat = ref<Seat | null>(null);
       <div
         class="p-4 rounded-lg shadow-lg bg-orange-500 grid place-content-center col-span-1 row-start-3"
       >
-      <div>
-        <SeatField v-model="seat" /></div>
+        <div>
+          <SeatField v-model="seat" />
+        </div>
       </div>
       <div
         class="p-4 rounded-lg shadow-lg bg-blue-400 grid place-content-center row-span-3"
@@ -591,7 +592,7 @@ const seat = ref<Seat | null>(null);
         {{ layout.name }}
       </header>
 
-      <draggable
+      <!--    <draggable
         v-model="layout.layoutItems"
         group="people"
         :animation="150"
@@ -600,13 +601,18 @@ const seat = ref<Seat | null>(null);
         class="grid grid-cols-4 gap-2"
         :class="layout.cols === 6 ? 'grid-cols-5' : 'grid-cols-4'"
       >
-        <template #item="{ element: layoutItems }: { element: LayoutItems }">
+         <template #item="{ element: layoutItems }: { element: LayoutItems }">
           <div>
-            <LayoutItem :layoutItems="layoutItems" />
+             <LayoutItem
+              v-for="layoutItem in layout.layoutItems"
+              :key="layoutItem.id"
+              :seat="layoutItem.seat"
+              v-model="layoutItem.seat"
+            /> 
           </div>
-        </template>
+        </template
       </draggable>
-
+>-->
       <footer>
         <button class="text-gray-500">+ Add a Card</button>
         <div><SeatField v-model="seat" /></div>
