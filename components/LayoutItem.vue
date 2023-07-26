@@ -20,6 +20,9 @@ defineEmits(["update:modelValue"]);
       width="40"
       :is=seat
       :class="{ selected: props.modelValue === props.seat }"
+      @click="
+        $emit('update:modelValue', props.seat === props.modelValue ? null : props.seat)
+      "
     ></component>
   </div>
 </template>

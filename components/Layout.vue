@@ -531,8 +531,14 @@ const seat = ref<Seat | null>(null);
         <LayoutItem
           v-for="layoutItem in layout.layoutItems"
           :key="layoutItem.id"
-          :seat="layoutItem.seat"
-        />
+          :seat="layoutItem.seat" <<--------- ver como abajo
+          v-model="layoutItem.seat"
+        /> 
+       <!--  <component v-for="layoutItem in layout.layoutItems"
+            width="75"
+            :is="findSeat(layoutItem.seat)"
+            class="drag-handle cursor-move"
+          ></component> -->
       </div>  
     </div>     
     </div>     
