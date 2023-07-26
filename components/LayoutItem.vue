@@ -1,39 +1,42 @@
 <script setup lang="ts">
 import { LayoutItems } from "types";
-const { findSeat } = UseSeats();
-defineProps<{
-  layoutItems: LayoutItems;
+import Seat from "types/Seat";
+
+
+const props = defineProps<{
+  seat: Seat;
+  modelValue:Seat;
 }>();
+defineEmits(["update:modelValue"]);
+
 </script>
 <template>
+
+ 
   <div class="layoutItem">
     <!--  <DragHandle class="pr-2" /> -->
-
+ {{ props.seat }}
     <component
-      width="50"
-      :is="findSeat(layoutItems.seat)"
-      class="drag-handle cursor-move"
+      width="40"
+      :is=seat
+      :class="{ selected: props.modelValue === props.seat }"
     ></component>
   </div>
 </template>
 <style>
-.sortable-chosen .layoutItem {
-  background: green;
+.layoutItem-container {
+  @apply grid grid-cols-3 gap-4;
 }
-.sortable-drag .layoutItem {
-  background: red;
+.layoutItem-container svg {
+  transition: 0.2s ease all;
+  @apply  cursor-pointer;
 }
-/* .sortable-ghost .layoutItem {
-  background: blue;
+.layoutItem-container svg.selected,
+.layoutItem-container svg.selected path {
+  @apply ring-2 ring-gray-700 rounded-3xl p-1;
+  @apply bg-gray-200 ;
 }
-.sortable-drag .layoutItem {
-  transform: rotate(5deg);
+.layoutItem-container svg:hover {
+  transform: scale(1.3);
 }
-.sortable-ghost .layoutItem {
-  position: relative;
-} */
-/* .sortable-ghost .layoutItem::after {
-  content: "";
-  @apply absolute top-0 bottom-0 left-0 right-0 bg-slate-300 rounded;
-} */
 </style>

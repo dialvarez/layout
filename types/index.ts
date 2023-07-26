@@ -31,7 +31,7 @@ export interface LayoutItems {
   id: ID;
   seat: Seat; // seat | aisle | stair | coffe | init
   row: number;
-  col: number;
+  col: number;  
   //image: ImageSeat | null;
   createdAt: Date;
 }

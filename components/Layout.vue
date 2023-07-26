@@ -126,8 +126,310 @@ const layouts = ref<Layout[]>([
         col: 4,
         createdAt: new Date(),
       },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 1,
+        col: 1,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 1,
+        col: 2,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 1,
+        col: 3,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 1,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 1,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 2,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 3,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 3,
+        col: 1,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 3,
+        col: 1,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 1,
+        col: 1,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 1,
+        col: 2,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 1,
+        col: 3,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 1,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 1,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 2,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 3,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 3,
+        col: 1,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 3,
+        col: 1,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 1,
+        col: 1,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 1,
+        col: 2,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 1,
+        col: 3,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 1,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 1,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 2,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 3,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 3,
+        col: 1,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 3,
+        col: 1,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
+      {
+        id: nanoid(5),
+        seat: "free",
+        row: 2,
+        col: 4,
+        createdAt: new Date(),
+      },
     ],
   },
+  
   /*  {
     id: nanoid(5),
     name: "Planta Baja",
@@ -210,7 +512,7 @@ const alt = useKeyModifier("Alt");
 const seat = ref<Seat | null>(null);
 </script>
 <template>
-  <div class="relative rounded-xl overflow-auto p-8">
+  <div class="relative rounded-xl overflow-auto p-4">
     <div
       class="grid grid-rows-3 grid-flow-col gap-4 font-mono text-white text-sm text-center font-bold leading-6 bg-stripes-fuchsia rounded-lg"
     >
@@ -225,11 +527,11 @@ const seat = ref<Seat | null>(null);
       <header class="font-bold mb-1">
         {{ layout.name }}
       </header>
-      <div class="grid grid-cols-4 gap-2">
+      <div class="grid grid-cols-5 gap-2">
         <LayoutItem
-          v-for="layoutItems in layout.layoutItems"
-          :key="layoutItems.id"
-          :layoutItems="layoutItems"
+          v-for="layoutItem in layout.layoutItems"
+          :key="layoutItem.id"
+          :seat="layoutItem.seat"
         />
       </div>  
     </div>     
