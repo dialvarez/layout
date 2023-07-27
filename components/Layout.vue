@@ -502,7 +502,7 @@ const layouts = ref<Layout[]>([
     ],
   }, */
 ]);
-
+const params: LayoutItems[] = reactive([]);
 const dragging = ref(false);
 const draggingInfo = computed(() => (dragging.value ? "under drag" : ""));
 function log(evt: Event) {
@@ -510,6 +510,11 @@ function log(evt: Event) {
 }
 const alt = useKeyModifier("Alt");
 const seat = ref<Seat | null>(null);
+
+// events
+const emit = defineEmits<{
+  (e: "@create", Seat: Seat): void;
+}>();
 </script>
 <template>
   <div class="relative rounded-xl overflow-auto p-4">
@@ -528,12 +533,8 @@ const seat = ref<Seat | null>(null);
             {{ layout.name }}
           </header>
           <div class="grid grid-cols-5 gap-2">
-            <LayoutItem
-              v-for="layoutItem in layout.layoutItems"
-              key="layoutItem.id"
-              layoutItems="layoutItem.seat"
-              v-model="layoutItem.seat"
-            />
+            <LayoutItem :params="layout.layoutItems" />
+
             <!--  <component v-for="layoutItem in layout.layoutItems"
             width="75"
             :is="findSeat(layoutItem.seat)"

@@ -3,9 +3,8 @@ import { LayoutItems } from "types";
 import Seat from "types/Seat";
 const { findSeat } = UseSeats();
 
-const props = defineProps<{
-  seat: Seat;
-  modelValue: Seat;
+defineProps<{
+  params: LayoutItems[];
 }>();
 defineEmits(["update:modelValue"]);
 </script>
@@ -14,21 +13,16 @@ defineEmits(["update:modelValue"]);
     <!--  <DragHandle class="pr-2" /> -->
 
     <component
+      v-for="param in params"
+      :key="param.id"
       width="40"
-      :is="findSeat(props.seat)"
-      :class="{ selected: modelValue === props.seat }"
-      @click="
-        $emit(
-          'update:modelValue',
-          props.seat === modelValue ? null : props.seat
-        )
-      "
+      :is="findSeat(param.seat)"
     ></component>
   </div>
 </template>
 <style>
 .layoutItem-container {
-  @apply grid  gap-4;
+  @apply grid grid-cols-5 gap-2;
 }
 .layoutItem-container svg {
   transition: 0.2s ease all;
