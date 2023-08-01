@@ -3,7 +3,6 @@ import { nanoid } from "nanoid";
 import draggable from "vuedraggable";
 import { Layout, LayoutItems, LayoutSetup } from "types";
 import Seat from "types/Seat";
-import LayoutItem from "./LayoutItem.vue";
 const { findSeat } = UseSeats();
 const layoutSetup = ref<LayoutSetup[]>([
   {
@@ -45,14 +44,14 @@ const layouts = ref<Layout[]>([
     layoutItems: [
       {
         id: nanoid(5),
-        seat: "selected",
+        seat: "free",
         row: 1,
         col: 1,
         createdAt: new Date(),
       },
       {
         id: nanoid(5),
-        seat: "selected",
+        seat: "free",
         row: 1,
         col: 2,
         createdAt: new Date(),
@@ -511,7 +510,8 @@ function log(evt: Event) {
 }
 const alt = useKeyModifier("Alt");
 const seat = ref<Seat | null>(null);
-const butaca = ref<Seat | null>(null);
+const seatSelected = ref<LayoutItems | null>(null);
+
 const clonedLayouts: Layout[] = layouts.value.map((layout: Layout) => ({
   ...layout,
   layoutItems: layout.layoutItems.map((item) => ({ ...item })),
@@ -521,14 +521,31 @@ const pp2 = computed(() =>
   layouts.value.map((item) => ({ ...item.layoutItems }))
 );
 
-const pp3 = computed(() =>
-  pp2.value.filter((item) => item))
-);
-const result : Seat= pp2.value.filter(word => word. ==="free");
+const selected = computed(() => {
+  pp2.value.filter((item) => item);
+});
+
+const updateImage = (layoutItem: LayoutItems) => {
+  console.log(layoutItem.id);
+  seatSelected.value = layoutItem;
+};
+const seleccionado = (layoutItem: LayoutItems) => {
+  console.log(layoutItem.seat);
+
+  if (layoutItem.seat === "free") {
+    layoutItem.seat = "selected";
+  } else if (layoutItem.seat == "selected") {
+    layoutItem.seat = "bloked";
+  } else if (layoutItem.seat == "bloked") {
+    layoutItem.seat = "booked";
+  } else {
+    layoutItem.seat = "free";
+  }
+  console.log(layoutItem.seat);
+};
 </script>
 <template>
   <div class="relative rounded-xl overflow-auto p-4">
-    {{ pp2 }}
     <div
       class="grid grid-rows-3 grid-flow-col gap-4 font-mono text-white text-sm text-center font-bold leading-6 bg-stripes-fuchsia rounded-lg"
     >
@@ -543,19 +560,15 @@ const result : Seat= pp2.value.filter(word => word. ==="free");
           <header class="font-bold mb-1">
             {{ layout.name }}
           </header>
-          <div
-            v-for="layoutItem in pp2"
-            :key=""
-            :param="layoutItem.seat"
-            v-model="butaca"
-          >
-            <!--    <LayoutItem
+          <div class="seat-container grid grid-cols-5 gap-2">
+            <component
               v-for="layoutItem in layout.layoutItems"
-              :key="layoutItem.id"
-              :param="layoutItem.seat"
-              v-model="butaca"
-            /> -->
-            <!--   <SeatField :layoutItems="layout.layoutItems" v-model="butaca" /> -->
+              :is="findSeat(layoutItem.seat)"
+              :class="{ selected: layoutItem.id === seatSelected?.id }"
+              v-model="layoutItem.seat"
+              @click="updateImage(layoutItem)"
+              @dblclick="seleccionado(layoutItem)"
+            ></component>
           </div>
         </div>
       </div>
@@ -568,7 +581,9 @@ const result : Seat= pp2.value.filter(word => word. ==="free");
       <div
         class="p-4 rounded-lg shadow-lg bg-orange-500 grid place-content-center col-span-1 row-start-3"
       >
-        <div></div>
+        <div>
+          <SeatField v-model="seat" />
+        </div>
       </div>
       <div
         class="p-4 rounded-lg shadow-lg bg-blue-400 grid place-content-center row-span-3"
@@ -634,3 +649,20 @@ const result : Seat= pp2.value.filter(word => word. ==="free");
     </div>
   </div>
 </template>
+<style scoped>
+.seat-container1 {
+  @apply grid grid-cols-5 gap-4 bg-red-500;
+}
+.seat-container svg {
+  transition: 0.2s ease all;
+  @apply cursor-pointer;
+}
+.seat-container svg.selected,
+.seat-container svg.selected {
+  @apply ring-1 ring-black rounded-3xl;
+  @apply bg-gray-500;
+}
+.seat-container svg:hover {
+  transform: scale(1.3);
+}
+</style>

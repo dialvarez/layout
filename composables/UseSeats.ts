@@ -13,6 +13,7 @@ export default function UseSeats() {
       .replace("-seat.svg", "");
     seats.push({ name, component });
   }
+
   /**
    * Get a single seat component by name
    */

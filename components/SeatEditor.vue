@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import EntrySeat from "types/EntrySeat";
 import Seat from "types/Seat";
-import { ref  } from "vue";
+import { ref } from "vue";
 
 // data
 const seat = ref<Seat | null>(null);
@@ -13,7 +13,6 @@ const emit = defineEmits<{
   (e: "@create", entrySeat: EntrySeat): void;
 }>();
 
-
 const handleSubmit = () => {
   emit("@create", {
     seat: seat.value,
@@ -24,8 +23,4 @@ const handleSubmit = () => {
   seat.value = null;
 };
 </script>
-<template>
- 
-    <SeatField v-model="seat" @click ="handleSubmit"/>
-
-</template>
+<template></template>
