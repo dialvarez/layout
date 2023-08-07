@@ -1,32 +1,33 @@
 <script setup lang="ts">
+import { nanoid } from "nanoid";
 import { LayoutItems } from "types";
 import Seat from "types/Seat";
 const { findSeat } = UseSeats();
 
-const props = defineProps<{
-  param: Seat;
-  modelValue: Seat;
+defineProps<{
+  layoutItems: LayoutItems[];
+  modelValue: LayoutItems | null;
 }>();
 defineEmits(["update:modelValue"]);
 </script>
 <template>
   <div class="layoutItem-container">
     <!--  <DragHandle class="pr-2" /> -->
-
     <component
-      width="40"
-      :is="findSeat(props.param)"
-      :class="{ selected: modelValue === props.param }"
+      v-for="layoutItem in layoutItems"
+      :is="findSeat(layoutItem.seat)"
+      :key="layoutItem.id"
+      :class="{ selected: modelValue === layoutItem }"
       @click="
         $emit(
           'update:modelValue',
-          props.param === modelValue ? null : props.param
+          layoutItem === modelValue ? null : layoutItem
         )
       "
     ></component>
   </div>
 </template>
-<style>
+<style scopedS>
 .layoutItem-container {
   @apply grid  gap-4;
 }

@@ -12,4 +12,5 @@
     <!-- <TrelloBoard /> -->
     <Layout />
   </div>
+  <NuxtPage />
 </template>

@@ -429,8 +429,7 @@ const layouts = ref<Layout[]>([
       },
     ],
   },
-
-  /*  {
+  {
     id: nanoid(5),
     name: "Planta Baja",
     cols: 4,
@@ -500,7 +499,7 @@ const layouts = ref<Layout[]>([
         createdAt: new Date(),
       },
     ],
-  }, */
+  },
 ]);
 
 const dragging = ref(false);
@@ -509,29 +508,61 @@ function log(evt: Event) {
   window.console.log(evt);
 }
 const alt = useKeyModifier("Alt");
-const seat = ref<Seat | null>(null);
+const seatSetup = ref<Seat>("selected");
 const seatSelected = ref<LayoutItems | null>(null);
+
+const seatLayoutSelected = ref<LayoutItems | null>(null);
+
+const obj = reactive({ seatLayoutSelected });
 
 const clonedLayouts: Layout[] = layouts.value.map((layout: Layout) => ({
   ...layout,
   layoutItems: layout.layoutItems.map((item) => ({ ...item })),
 }));
 
-const pp2 = computed(() =>
-  layouts.value.map((item) => ({ ...item.layoutItems }))
-);
-
-const selected = computed(() => {
-  pp2.value.filter((item) => item);
-});
+const layoutPlantaAlta = () => {
+  return layouts.value.map((item) => item.name === "Planta Alta");
+};
+/* const selected = computed(() => {
+  layoutPlantaAlta.value.filter((item) => item);
+}); */
 
 const updateImage = (layoutItem: LayoutItems) => {
-  console.log(layoutItem.id);
+  console.log("un click  " + layoutItem.id);
   seatSelected.value = layoutItem;
 };
+
+watch(
+  () => seatLayoutSelected,
+  (newValue, oldValue) => {
+    console.log(
+      `newValue is ${newValue.value?.id} and oldValue is ${oldValue.value?.seat}`
+    );
+    change_state(newValue.value?.id);
+  },
+  { deep: true }
+);
+const change_state = (id: any) => {
+  console.log("change_state " + id);
+  layouts.value.map((item) => {
+    item.layoutItems.map((item2) => {
+      // item2.id === id ? (item2.seat = "selected") : (item2.seat = "free");
+      if (item2.id === id) {
+        item2.seat = seatSetup.value;
+      }
+    });
+  });
+};
+
 const seleccionado = (layoutItem: LayoutItems) => {
   console.log(layoutItem.seat);
-
+  if (seatSetup.value != null) {
+    layoutItem.seat = seatSetup.value;
+  }
+  function test() {
+    console.log("dasdasdas");
+  }
+  /*
   if (layoutItem.seat === "free") {
     layoutItem.seat = "selected";
   } else if (layoutItem.seat == "selected") {
@@ -541,6 +572,7 @@ const seleccionado = (layoutItem: LayoutItems) => {
   } else {
     layoutItem.seat = "free";
   }
+  */
   console.log(layoutItem.seat);
 };
 </script>
@@ -560,15 +592,14 @@ const seleccionado = (layoutItem: LayoutItems) => {
           <header class="font-bold mb-1">
             {{ layout.name }}
           </header>
-          <div class="seat-container grid grid-cols-5 gap-2">
-            <component
-              v-for="layoutItem in layout.layoutItems"
-              :is="findSeat(layoutItem.seat)"
-              :class="{ selected: layoutItem.id === seatSelected?.id }"
-              v-model="layoutItem.seat"
-              @click="updateImage(layoutItem)"
-              @dblclick="seleccionado(layoutItem)"
-            ></component>
+
+          <div>
+            <LayoutItem
+              class="seat-layout grid grid-cols-5 gap-2"
+              :layoutItems="layout.layoutItems"
+              v-model="seatLayoutSelected"
+              :key="layout.id"
+            />
           </div>
         </div>
       </div>
@@ -582,7 +613,7 @@ const seleccionado = (layoutItem: LayoutItems) => {
         class="p-4 rounded-lg shadow-lg bg-orange-500 grid place-content-center col-span-1 row-start-3"
       >
         <div>
-          <SeatField v-model="seat" />
+          <SeatField v-model="seatSetup" />
         </div>
       </div>
       <div
@@ -649,20 +680,3 @@ const seleccionado = (layoutItem: LayoutItems) => {
     </div>
   </div>
 </template>
-<style scoped>
-.seat-container1 {
-  @apply grid grid-cols-5 gap-4 bg-red-500;
-}
-.seat-container svg {
-  transition: 0.2s ease all;
-  @apply cursor-pointer;
-}
-.seat-container svg.selected,
-.seat-container svg.selected {
-  @apply ring-1 ring-black rounded-3xl;
-  @apply bg-gray-500;
-}
-.seat-container svg:hover {
-  transform: scale(1.3);
-}
-</style>
