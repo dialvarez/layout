@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import draggable from "vuedraggable";
 import { Layout, LayoutItems, LayoutSetup } from "types";
 import Seat from "types/Seat";
+import { useKeyModifier } from '@vueuse/core'
 const { findSeat } = UseSeats();
 const layoutSetup = ref<LayoutSetup[]>([
   {
@@ -594,11 +595,11 @@ const seleccionado = (layoutItem: LayoutItems) => {
           </header>
 
           <div>
-            <LayoutItem
+            <LayoutItem 
               class="seat-layout grid grid-cols-5 gap-2"
               :layoutItems="layout.layoutItems"
-              v-model="seatLayoutSelected"
-              :key="layout.id"
+               v-model="seatLayoutSelected"
+              :key="layout.id"            
             />
           </div>
         </div>
