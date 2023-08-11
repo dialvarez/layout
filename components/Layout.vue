@@ -3,7 +3,6 @@ import { nanoid } from "nanoid";
 import draggable from "vuedraggable";
 import { Layout, LayoutItems, LayoutSetup } from "types";
 import Seat from "types/Seat";
-import { useKeyModifier } from '@vueuse/core'
 const { findSeat } = UseSeats();
 const layoutSetup = ref<LayoutSetup[]>([
   {
@@ -503,6 +502,14 @@ const layouts = ref<Layout[]>([
   },
 ]);
 
+// Calcular el total de elementos en layoutItems de todos los layouts
+const totalLayoutItems = computed(() => {
+  return layouts.value.map((layout) => layout.layoutItems.length);
+});
+
+const cantLayoutItems = computed(() => {
+  return layouts.value.map((layout) => layout.layoutItems.length).length;
+});
 const dragging = ref(false);
 const draggingInfo = computed(() => (dragging.value ? "under drag" : ""));
 function log(evt: Event) {
@@ -512,9 +519,9 @@ const alt = useKeyModifier("Alt");
 const seatSetup = ref<Seat>("selected");
 const seatSelected = ref<LayoutItems | null>(null);
 
-const seatLayoutSelected = ref<LayoutItems | null>(null);
+//const seatLayoutSelected = ref<LayoutItems | null>(null);
 
-const obj = reactive({ seatLayoutSelected });
+const seatLayoutSelected = ref<LayoutItems | null>(null);
 
 const clonedLayouts: Layout[] = layouts.value.map((layout: Layout) => ({
   ...layout,
@@ -591,15 +598,29 @@ const seleccionado = (layoutItem: LayoutItems) => {
           class="column bg-gray-200 text-cyan-950 rounded min-w-[250px]"
         >
           <header class="font-bold mb-1">
-            {{ layout.name }}
+            {{ cantLayoutItems }}
           </header>
+          <div class="ml-4 flex flex-1 flex-col mb-2">
+            <div class="flex text-base font-medium text-gray-900">
+              <h3>Current Element:</h3>
+              <p class="ml-1">{{ seatLayoutSelected?.id }}</p>
+            </div>
+            <div class="flex text-base font-medium text-gray-900">
+              <h3>Current Setting::</h3>
+              <p class="ml-1">{{ seatSetup }}</p>
+            </div>
+            <div class="flex text-base font-medium text-gray-900">
+              <h3>Cantidad LayoutItems:</h3>
+              <p class="ml-1">{{ totalLayoutItems }}</p>
+            </div>
+          </div>
 
           <div>
-            <LayoutItem 
+            <LayoutItem
               class="seat-layout grid grid-cols-5 gap-2"
               :layoutItems="layout.layoutItems"
-               v-model="seatLayoutSelected"
-              :key="layout.id"            
+              v-model="seatLayoutSelected"
+              :key="layout.id"
             />
           </div>
         </div>
