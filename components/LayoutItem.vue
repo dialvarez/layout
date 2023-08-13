@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { LayoutItem } from ".nuxt/components";
 import { nanoid } from "nanoid";
 import { LayoutItems } from "types";
 import Seat from "types/Seat";
@@ -35,12 +36,13 @@ const control = useKeyModifier("Control");
             )
           : null */
       "
-    ></component>
+      >{{ layoutItem.col }}</component
+    >
   </div>
 </template>
 <style scoped>
 .layoutItem-container {
-  @apply grid  gap-4 p-3;
+  @apply grid gap-4 ml-2;
 }
 .layoutItem-container svg {
   transition: 0.2s ease all;
